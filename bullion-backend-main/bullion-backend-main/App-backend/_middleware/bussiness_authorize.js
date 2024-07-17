@@ -1,5 +1,5 @@
 const jwt = require('express-jwt');
-secret = process.env.JWT_SECRET
+// secret = process.env.JWT_SECRET
 const db = require('_helpers/db');
 
 module.exports = authorize;
@@ -13,7 +13,7 @@ function authorize(roles = []) {
 
     return [
         // authenticate JWT token and attach user to request object (req.user)
-        jwt({ secret, algorithms: ['HS256'] }),
+        // jwt({ secret, algorithms: ['HS256'] }),
         
 
         // authorize based on user role

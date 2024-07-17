@@ -1,5 +1,5 @@
 const jwt = require('express-jwt');
-const secret = process.env.JWT_SECRET
+// const secret = process.env.JWT_SECRET
 const db = require('_helpers/db');
 const Enums = require('../_helpers/Enums');
 
@@ -14,7 +14,7 @@ function authorizeTrader(roles = []) {
 
     return [
         // authenticate JWT token and attach user to request object (req.user)
-        jwt({ secret, algorithms: ['HS256'] }),
+        // jwt({ secret, algorithms: ['HS256'] }),
 
 
         // authorize based on user role
