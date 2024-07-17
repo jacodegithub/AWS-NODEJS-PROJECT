@@ -37,7 +37,6 @@
     "nanoid": "^3.3.4",
     "node-cache": "^5.1.2",
     "nodemailer": "^6.4.16",
-    "razorpay": "^2.8.6",
     "request": "^2.88.2",
     "rootpath": "^0.1.2",
     "sinon": "^17.0.1",

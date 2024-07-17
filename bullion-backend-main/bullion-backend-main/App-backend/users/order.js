@@ -6,8 +6,8 @@ require("dotenv").config();
 const request = require("request");
 const logger = require("../_helpers/logger");
 
-let key_id = process.env.RAZORPAY_KEY;
-let key_secret = process.env.RAZORPAY_SECRET;
+// let key_id = process.env.RAZORPAY_KEY;
+// let key_secret = process.env.RAZORPAY_SECRET;
 const OrderModel = require("../Models/OrderModel");
 const UserModel = require("./../Models/UserModel");
 const PriceModel = require("../Models/PricesModel");
@@ -181,10 +181,10 @@ router.post("/rateOrder", async (req, res) => {
   }
 });
 
-const razorpay = new Razorpay({
-  key_id: key_id,
-  key_secret: key_secret,
-});
+// const razorpay = new Razorpay({
+//   key_id: key_id,
+//   key_secret: key_secret,
+// });
 
 // Gets the prices from variables collection & stores them in the variales;
 const GetPrices = () => {
@@ -332,43 +332,43 @@ const CalculateCost = (body, senderLat, senderLon) => {
           payment_capture,
         };
 
-        try {
-          const response = await razorpay.orders.create(options);
+        // try {
+        //   const response = await razorpay.orders.create(options);
 
-          var date = new Date();
-          data.date = date;
-          data.orderStatus = 'pending';
-          data.orderId = orderId;
-          data.amount = totalAmount;
-          data.payment = {
-            processor: Enums.PaymentProcessor.Razorpay,
-            orderId: response.id
-          };
-          data.senderLocation = { lat: senderLat, lng: senderLon };
-          data.receiverLocation = { lat: receiverLat, lng: receiverLon };
-          data.promoCode = appliedCoupon;
-          data.deliveryMethod = deliveryMethod;
-          data.amountByDistance = amount;
+        //   var date = new Date();
+        //   data.date = date;
+        //   data.orderStatus = 'pending';
+        //   data.orderId = orderId;
+        //   data.amount = totalAmount;
+        //   data.payment = {
+        //     processor: Enums.PaymentProcessor.Razorpay,
+        //     orderId: response.id
+        //   };
+        //   data.senderLocation = { lat: senderLat, lng: senderLon };
+        //   data.receiverLocation = { lat: receiverLat, lng: receiverLon };
+        //   data.promoCode = appliedCoupon;
+        //   data.deliveryMethod = deliveryMethod;
+        //   data.amountByDistance = amount;
 
-          const newForm = new OrderModel(data);
-          await newForm.save();
+        //   const newForm = new OrderModel(data);
+        //   await newForm.save();
 
-          res.json({
-            orderId: orderId,
-            paymentProcessorOrderId: response.id
-          });
+        //   res.json({
+        //     orderId: orderId,
+        //     paymentProcessorOrderId: response.id
+        //   });
 
-          // Send confirmation email to gordian employees ( aka @Dhanush )
-          const bcc = process.env.ADMIN_EMAIL;
-          const confirmationEmailRecipient = process.env.ADMIN_SUPPORT_MAIL;
-          const subject = "Gordian - New Order Attempt";
-          const { html, attachments } = orderService.generateOrderConfirmationHTML({...body, ...data});
-          EmailService.send(confirmationEmailRecipient, subject, html, undefined, attachments, bcc)
-          .catch((err) => {/** Do nothing */});
-        } catch (error) {
-          logger.log("Orders:: Post /razorpay", error);
-          return res.status(500).send({"message": "Something went wrong. Please try again"});
-        }
+        //   // Send confirmation email to gordian employees ( aka @Dhanush )
+        //   const bcc = process.env.ADMIN_EMAIL;
+        //   const confirmationEmailRecipient = process.env.ADMIN_SUPPORT_MAIL;
+        //   const subject = "Gordian - New Order Attempt";
+        //   const { html, attachments } = orderService.generateOrderConfirmationHTML({...body, ...data});
+        //   EmailService.send(confirmationEmailRecipient, subject, html, undefined, attachments, bcc)
+        //   .catch((err) => {/** Do nothing */});
+        // } catch (error) {
+        //   logger.log("Orders:: Post /razorpay", error);
+        //   return res.status(500).send({"message": "Something went wrong. Please try again"});
+        // }
       }
     );
   });
@@ -604,9 +604,9 @@ router.get(
         });
       }
 
-      await razorpay.payments.refund(order.payment.paymentId, {
-        amount: order.amount * 100
-      });
+      // await razorpay.payments.refund(order.payment.paymentId, {
+      //   amount: order.amount * 100
+      // });
       order.orderStatus = Enums.Locus.TASK_STATUS.CANCELLED;
       await order.save();
       res.status(200).json({
