@@ -18,7 +18,7 @@ Sentry.init({
 
 const api_routes = require('./users/order');
 const errorHandler = require('_middleware/error-handler');
-const order_routes = require('./users/orders_controller')
+// const order_routes = require('./users/orders_controller')
 const firebase_routes = require('./users/firebaseController');
 const webhook_routes = require('./users/webhook_controller');
 const misc_routes = require('./routes/MiscRoutes');
@@ -53,7 +53,7 @@ app.use((_req, res, next) => {
 });
 
 app.use('/', api_routes);
-app.use("/", order_routes);
+// app.use("/", order_routes);
 app.use("/", firebase_routes);
 
 app.use("/", webhook_routes);
