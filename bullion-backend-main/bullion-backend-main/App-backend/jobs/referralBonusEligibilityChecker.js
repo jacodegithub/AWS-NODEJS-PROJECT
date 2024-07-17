@@ -9,7 +9,7 @@ const UserModel = require('../Models/UserModel')
 const OrderModel = require('../Models/OrderModel')
 const referralModel = require('../Models/ReferralModel')
 const { referralConfig, reportingEmails } = require('../config.json')
-const walletService = require('../users/wallet_service');
+// const walletService = require('../users/wallet_service');
 
 (async () => {
     try {
@@ -64,7 +64,7 @@ async function disburseReferralBonusToReferrer(referral) {
     if (referrerCompanyId) {
         logger.info(`Disbursing referral bonus to referrer with userId: ${referral.referrerId}`)
         const comment = `Referral Bonus for user with phonenumber: ${referral.phoneNumber}`
-        await walletService.addNewWalletForCompany(referral.referrerBonus, referrerCompanyId, referral.referrerId, false, referralConfig.bonusAmountExpiryMs, comment)
+        // await walletService.addNewWalletForCompany(referral.referrerBonus, referrerCompanyId, referral.referrerId, false, referralConfig.bonusAmountExpiryMs, comment)
         await referralModel.findOneAndUpdate({ _id: referral._id }, { status: Enums.ReferralStatus.COMPLETED })
     }
     else {

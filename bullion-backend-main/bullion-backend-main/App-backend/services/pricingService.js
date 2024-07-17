@@ -1,5 +1,5 @@
 const PriceModel = require('../Models/PricesModel')
-const walletService = require('../users/wallet_service')
+// const walletService = require('../users/wallet_service')
 const Enums = require('../_helpers/Enums')
 const logger = require('../_helpers/logger')
 const { captureException } = require('@sentry/node')
@@ -12,9 +12,9 @@ async function calculateCost(originDestinationDistance, user) {
         let walletPlan
         const companyId = user.GST?.companyId
 
-        if (companyId) {
-            walletPlan = await walletService.getWalletPlanForCompany(companyId)
-        }
+        // if (companyId) {
+        //     walletPlan = await walletService.getWalletPlanForCompany(companyId)
+        // }
 
         const surgedPricedModel = await getSurgePriceModelIfEnabled(walletPlan?._id)
         if (surgedPricedModel) {

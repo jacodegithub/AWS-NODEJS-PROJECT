@@ -6,7 +6,7 @@ const logger = require('../_helpers/logger')
 const referralConfig = require('../config.json').referralConfig
 const _ = require('lodash')
 const WhatsappService = new (require('../users/WhatsappService'))()
-const walletService = require('../users/wallet_service')
+// const walletService = require('../users/wallet_service')
 const CompanyModel = require('../Models/CompanyModel')
 const { customAlphabet } = require('nanoid')
 const { incrementReferralCountForLead } = require('./LeadService')
@@ -177,7 +177,7 @@ async function grantReferralBonus(referral, companyId) {
     const referralBonusExpiryMs = referralConfig.bonusAmountExpiryMs
     logger.info('Adding referral bonus for company: ' + companyId + ' referred by userId: ' + referral.referrerId)
     const comment = `Referred by user with ID: ${referral.referrerId}`
-    await walletService.addNewWalletForCompany(referralBonus, companyId, null, false, referralBonusExpiryMs, comment)
+    // await walletService.addNewWalletForCompany(referralBonus, companyId, null, false, referralBonusExpiryMs, comment)
   } else {
     throw Error({
       message: 'CompanyId not generated for this user. To have a wallet, you need to be a businessUser'
