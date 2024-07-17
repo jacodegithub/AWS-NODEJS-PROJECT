@@ -1,4 +1,4 @@
-const Razorpay = require("razorpay");
+// const Razorpay = require("razorpay");
 var nodemailer = require("nodemailer");
 const express = require("express");
 const router = express.Router();
@@ -42,7 +42,7 @@ router.post("/orderForm", async (req, res) => {
 
     const paymentId = orderDetails.paymentId;
     // const response = await razorpay.orders.fetchPayments(paymentId)
-    const response = await razorpay.orders.fetchPayments(orderId)
+    // const response = await razorpay.orders.fetchPayments(orderId)
 
 
     if (response.items[0] && response.items[0].status == 'captured') {

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const webhookService = require('./webhook_service')
-const razorpay = require('razorpay');
+// const razorpay = require('razorpay');
 const { createHash } = require('crypto');
 const axios = require('axios');
 const ExchangeTokenService = require('../services/ExchangeTokenService');
@@ -51,7 +51,8 @@ function handlePaymentsWebhook(request, response) {
         const { headers, body } = request;
         const signature = headers["x-razorpay-signature"] || "";
 
-        const isValidSignature = razorpay.validateWebhookSignature(JSON.stringify(body), signature, process.env.RAZORPAY_WEBHOOK_SECRET);
+        // razorpay.validateWebhookSignature(JSON.stringify(body), signature, process.env.RAZORPAY_WEBHOOK_SECRET);
+        const isValidSignature = null;
         if (!isValidSignature) {
             console.error("WebhookController::handlePaymentsWebhook:: Invalid signature = ", signature);
             return response.status(401).send({ "message": "Invalid signature. This endpoint needs valid authentication" });

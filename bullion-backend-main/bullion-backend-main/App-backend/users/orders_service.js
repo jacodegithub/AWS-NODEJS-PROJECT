@@ -12,8 +12,8 @@ const AWSS3 = new AWSServices.S3();
 //const LocusService = new (require('./LocusService'))();
 const SettingsService = new (require('./SettingsService'))();
 
-const Razorpay = require('./RazorPay');
-const razorpay = new Razorpay();
+// const Razorpay = require('./RazorPay');
+// const razorpay = new Razorpay();
 const utils = require('./../_helpers/Utility');
 const Enums = require("./../_helpers/Enums");
 const WhatsappService = new (require("./WhatsappService"))();
@@ -684,34 +684,34 @@ async function placeOrder(user, body, files) {
       orderId: orderId,
     };
   } else if (paymentType === Enums.PaymentType.onDemand) {
-    const newRazorPayOrder = await razorpay.create(
-      totalAmount * 100,
-      currency,
-      orderId
-    );
-    paymentProcessorOrderId = newRazorPayOrder["id"];
-    payment = {
-      paymentType: paymentType,
-      processor: Enum.PaymentProcessor.Razorpay,
-      orderId: newRazorPayOrder["id"],
-    };
+    // const newRazorPayOrder = await razorpay.create(
+    //   totalAmount * 100,
+    //   currency,
+    //   orderId
+    // );
+    // paymentProcessorOrderId = newRazorPayOrder["id"];
+    // payment = {
+    //   paymentType: paymentType,
+    //   processor: Enum.PaymentProcessor.Razorpay,
+    //   orderId: newRazorPayOrder["id"],
+    // };
   } else if (paymentType === Enums.PaymentType.postPay) {
     //generate razorpay link and send it to the customer
     const phone = utils.phoneNumberFormatRazorPay(sendLinkTo);
-    const newPaymentLink = await razorpay.createPaymentLink(
-      totalAmount * 100,
-      currency,
-      orderId,
-      phone
-    );
-    paymentProcessorOrderId = newPaymentLink["id"];
-    paymentLink = newPaymentLink["short_url"];
-    payment = {
-      paymentType: paymentType,
-      processor: Enum.PaymentProcessor.Razorpay,
-      orderId: paymentProcessorOrderId,
-      paymentNumber: sendLinkTo,
-    };
+    // const newPaymentLink = await razorpay.createPaymentLink(
+    //   totalAmount * 100,
+    //   currency,
+    //   orderId,
+    //   phone
+    // );
+    // paymentProcessorOrderId = newPaymentLink["id"];
+    // paymentLink = newPaymentLink["short_url"];
+    // payment = {
+    //   paymentType: paymentType,
+    //   processor: Enum.PaymentProcessor.Razorpay,
+    //   orderId: paymentProcessorOrderId,
+    //   paymentNumber: sendLinkTo,
+    // };
     skipOnDemandPayment = true;
   }
   //   else if(paymentType === Enums.PaymentType.booking){
@@ -1105,7 +1105,7 @@ async function cancelOrder(orderId, userId) {
         };
       };
       const razorpayAmount = getAmountForRazorPay(amount, currency);
-      await razorpay.refund(payment.paymentId, razorpayAmount);
+      // await razorpay.refund(payment.paymentId, razorpayAmount);
     }
     else if (paymentType === Enums.PaymentType.wallet || paymentType === Enums.PaymentType.credit) {
       await PaymentService.refundPaymentWalletOrCredit(userId, amount, paymentType, orderId);
