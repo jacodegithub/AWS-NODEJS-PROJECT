@@ -1,10 +1,11 @@
-const UserSegmentQueriesModel = require("../Models/UserSegmentQueriesModel");
+// const UserSegmentQueriesModel = require("../Models/UserSegmentQueriesModel");
 const UserModel = require("../Models/UserModel");
 const ObjectId = require('mongoose').Types.ObjectId;
 
 async function getSegmentedUsers(queryTitle) {
   const parsedQueryTitle = queryTitle.toLowerCase();
-  const userSegmentQuery = await UserSegmentQueriesModel.findOne({ title: parsedQueryTitle });
+  // await UserSegmentQueriesModel.findOne({ title: parsedQueryTitle });
+  const userSegmentQuery = null;
   // What if there are a lot of users?
   const matcher = JSON.parse(userSegmentQuery.query)
   const users = await UserModel.aggregate([

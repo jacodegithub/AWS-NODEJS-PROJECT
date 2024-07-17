@@ -28,7 +28,7 @@ const bullion_routes = require('./users/bullionController');
 const bullionRoutesv2 = require('./users/bullionControllerv2');
 const serviceability_routes = require('./controllers/serviceabilityController');
 const web_notification_routes = require('./controllers/webNotificationsController');
-const pushNotificationRoutes = require('./controllers/pushNotificationController');
+// const pushNotificationRoutes = require('./controllers/pushNotificationController');
 const ReferralsController = require('./controllers/ReferralController');
 const noticesController = require('./controllers/noticesController')
 

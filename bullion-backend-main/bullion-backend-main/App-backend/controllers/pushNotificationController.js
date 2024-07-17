@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const logger = require('../_helpers/logger');
-const pushNotificationService = require('../services/PushNotificationService');
-const userSegmentsService = require('../services/UserSegmentService');
+// const pushNotificationService = require('../services/PushNotificationService');
+// const userSegmentsService = require('../services/UserSegmentService');
 
 router.post('/push', sendNotifications);
 router.post('/push/marketing', sendMarketingNotification);
@@ -15,7 +15,7 @@ async function sendNotifications(req, res, next) {
         message: 'Bad body request'
       })
     }
-    await pushNotificationService.sendNotifications(userIds, content)
+    // await pushNotificationService.sendNotifications(userIds, content)
     res.status(200).json({
       message: 'Notifications sent successfully',
     })
@@ -35,8 +35,8 @@ async function sendMarketingNotification(req, res, next) {
       })
       return
     }
-    const userIds = await userSegmentsService.getSegmentedUsers(params.queryId)
-    await pushNotificationService.sendNotifications(userIds, content)
+    // const userIds = await userSegmentsService.getSegmentedUsers(params.queryId)
+    // await pushNotificationService.sendNotifications(userIds, content)
     res.status(200).json({
       message: `Notifications sent successfully for marketing query: ${queryId}`,
     })
