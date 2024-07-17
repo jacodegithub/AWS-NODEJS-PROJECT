@@ -1,0 +1,78 @@
+{
+  "allowedBullionOrderStatusTransitions": {
+    "Admin": {
+      "orderCreated": [
+        "orderAccepted",
+        "adminDeleted"
+      ],
+      "orderAccepted": [
+        "paidByCustomer",
+        "paymentAccepted",
+        "paidToTrader",
+        "adminDeleted"
+      ],
+      "paidByCustomer": [
+        "paymentAccepted",
+        "paidToTrader",
+        "adminDeleted"
+      ],
+      "paymentAccepted": [
+        "paidToTrader"
+      ]
+    },
+    "Trader": {
+      "orderCreated": [
+        "orderAccepted",
+        "traderRejected"
+      ],
+      "paidToTrader": [
+        "orderReadyForDispatch"
+      ]
+    },
+    "Bussiness": {
+      "orderAccepted": [
+        "paidByCustomer"
+      ]
+    }
+  },
+  "taxConstants": {
+    "tcs": 0.001,
+    "tcsAmountThreshold": 5000000
+  },
+  "zohoTaxDetails": {
+    "tcs": 0.1,
+    "tcsTaxId": "3415940000003153037"
+  },
+  "externalAPIRetryParams": {
+    "delayMs": 6,
+    "maxRetryCount": 3
+  },
+  "reportingEmails": [
+    "prajwal@gordian.in",
+    "udit@gordian.in",
+    "yogi@gordian.in",
+    "dhanush@gordian.in"
+  ],
+  "emailReportingIntervalMs": 1800000,
+  "discounts": {
+    "newUsers": {
+      "maxLimit": 35
+    }
+  },
+  "insuranceConfig": {
+    "insuranceMandatoryLimit": 50000,
+    "percentageCharges": 0.118,
+    "flatFee": 30,
+    "flatFeeOrderCount": 10
+  },
+  "insuranceProhibitedBusinessCategories": [
+    "FOREX"
+  ],
+  "referralConfig": {
+    "customMessagePackageValueThreshold": 1000000,
+    "bonusAmountINR": 350,
+    "referrerBonusINR": 200,
+    "bonusAmountExpiryMs": 7776000000,
+    "referralExpiryMs": 518400000
+  }
+}

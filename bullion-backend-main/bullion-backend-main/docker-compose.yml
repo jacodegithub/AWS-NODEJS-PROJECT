@@ -1,0 +1,15 @@
+version: '3.1'
+services:
+  mongo_container:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: shlok
+      MONGO_INITDB_ROOT_PASSWORD: rsdsharma
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+  
+
+# volumes:
+#   mongo_data_container: ./data
