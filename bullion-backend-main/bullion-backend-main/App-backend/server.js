@@ -85,7 +85,7 @@ app.use(Sentry.Handlers.errorHandler({
 app.use(errorHandler);
 
 // start server
-const port = process.env.USER_PORT
+const port = process.env.USER_PORT || 5000;
 app.listen(port, () => {
   console.log('Server listening on port ' + port);
 });
