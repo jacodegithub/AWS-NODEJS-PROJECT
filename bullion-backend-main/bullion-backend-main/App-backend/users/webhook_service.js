@@ -15,7 +15,7 @@ const WhatsappService = new (require("./WhatsappService"))();
 const logger = require("../_helpers/logger");
 const WalletTransactionModel = require('../Models/WalletTransactionModel');
 const CompanyService = new (require('./CompanyService'))();
-const WalletService = require("./wallet_service");
+// const WalletService = require("./wallet_service");
 const insuranceService = require('../services/insuranceService');
 const config = require('../config.json')
 const reportingEmails = config.reportingEmails
@@ -165,7 +165,7 @@ async function manageTaskStatusUpdateLifecycle(status, orderId, full_tracking_li
                 await updateOrder(query, updateQuery);
                 //await updateWalletWithMargin(userId,orderId);
                 if (orderPlaced.orderType === Enums.Order.Type.product) {
-                    await WalletService.addCashback(orderId);
+                    // await WalletService.addCashback(orderId);
                 }
                 else {
                     await InvoiceService.createAndSendInvoice(orderId)
@@ -583,7 +583,7 @@ function handleWalletPaymentAsCaptured(webhookPayload) {
         .then(async (updatedTransaction) => {
             const companyId = updatedTransaction.companyId;
             const amount = updatedTransaction.amount
-            await WalletService.addNewWalletForCompany(amount, companyId)
+            // await WalletService.addNewWalletForCompany(amount, companyId)
             const users = await UserService.find({ "GST.companyId": companyId });
             const emails = users.map((c) => c.email);
             //const { email } = await UserService.findOne({ _id: updatedTransaction.userId });

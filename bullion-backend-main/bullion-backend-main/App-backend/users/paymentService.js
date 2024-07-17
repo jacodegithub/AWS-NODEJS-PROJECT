@@ -1,6 +1,6 @@
 const UserService = new (require("./UserService"))();
 const CompanyService = new (require("./CompanyService"))();
-const walletService = require('./wallet_service')
+// const walletService = require('./wallet_service')
 const CreditTransactionService = new (require("./CreditTransactionService"))();
 const Enums = require("../_helpers/Enums");
 const request = require("request");
@@ -202,7 +202,7 @@ async function makePaymentWalletOrCredit(userId, amount, paymentType, orderId, w
   const { companyId } = GST;
   if (companyId) {
     if (paymentType === Enums.PaymentType.wallet) {
-      await walletService.deductAmountForCompany(companyId, amount, userId, orderId, walletDiscount)
+      // await walletService.deductAmountForCompany(companyId, amount, userId, orderId, walletDiscount)
     } else if (paymentType === Enums.PaymentType.credit) {
       CompanyService.addCreditAmount(amount, companyId);
     }
@@ -261,7 +261,7 @@ async function refundPaymentWalletOrCredit(userId, amount, paymentType, orderId)
   const { companyId } = GST;
   if (companyId) {
     if (paymentType === Enums.PaymentType.wallet) {
-      walletService.refundAmountForOrder(orderId, amount, userId, companyId)
+      // walletService.refundAmountForOrder(orderId, amount, userId, companyId)
     } else if (paymentType === Enums.PaymentType.credit) {
       CompanyService.deductCreditAmount(amount, companyId);
     } else {

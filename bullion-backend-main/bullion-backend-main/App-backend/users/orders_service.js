@@ -19,7 +19,7 @@ const Enums = require("./../_helpers/Enums");
 const WhatsappService = new (require("./WhatsappService"))();
 const TookanService = new (require("./TookanService"))();
 const BullionService = require('../services/BullionService');
-const walletService = require('./wallet_service')
+// const walletService = require('./wallet_service')
 const logger = require("../_helpers/logger");
 const WalletPlanModel = require("../Models/WalletPlanModel");
 const TraderModel = require("../Models/TraderModel");
@@ -1343,25 +1343,25 @@ async function calcWalletDiscount(userId, amount) {
     const { companyId } = GST;
 
     //find company walletPlan, if any
-    if (companyId) {
-      walletPlan = await walletService.getWalletPlanForCompany(companyId)
+    // if (companyId) {
+    //   walletPlan = await walletService.getWalletPlanForCompany(companyId)
 
-      if (walletPlan) {
-        const { discount } = walletPlan;
-        const { category, value, maxDiscount } = discount;
-        let discountAmount = 0
-        if (category === Enums.Coupon.Type.percent) {
-          discountAmount = (amount * value / 100)
-        }
-        else {
-          discountAmount = amount - value
-        }
-        if (discountAmount > maxDiscount)
-          discountAmount = maxDiscount
+    //   if (walletPlan) {
+    //     const { discount } = walletPlan;
+    //     const { category, value, maxDiscount } = discount;
+    //     let discountAmount = 0
+    //     if (category === Enums.Coupon.Type.percent) {
+    //       discountAmount = (amount * value / 100)
+    //     }
+    //     else {
+    //       discountAmount = amount - value
+    //     }
+    //     if (discountAmount > maxDiscount)
+    //       discountAmount = maxDiscount
 
-        totalDiscount = Math.floor(discountAmount);
-      }
-    }
+    //     totalDiscount = Math.floor(discountAmount);
+    //   }
+    // }
   }
   catch (e) {
     captureException(e)
