@@ -1,22 +1,22 @@
-const fbAdmin = require('firebase-admin');
+// const fbAdmin = require('firebase-admin');
 const firebaseDeviceModel = require('./../Models/FirebaseDevices');
 const logger = require('../_helpers/logger');
 
 // Instead of using a service account, load the service account keys as environment variables
-fbAdmin.initializeApp({
-    credential: fbAdmin.credential.cert({
-        "type": process.env.FIREBASE_CONFIG_TYPE,
-        "project_id": process.env.FIREBASE_CONFIG_PROJECT_ID,
-        "private_key_id": process.env.FIREBASE_CONFIG_PRIVATE_KEY_ID,
-        "private_key": process.env.FIREBASE_CONFIG_PRIVATE_KEY,
-        "client_email": process.env.FIREBASE_CONFIG_CLIENT_EMAIL,
-        "client_id": process.env.FIREBASE_CONFIG_CLIENT_ID,
-        "auth_uri": process.env.FIREBASE_CONFIG_AUTH_URI,
-        "token_uri": process.env.FIREBASE_CONFIG_TOKEN_URI,
-        "auth_provider_x509_cert_url": process.env.FIREBASE_CONFIG_AUTH_PROVIDER_CERT_URL,
-        "client_x509_cert_url": process.env.FIREBASE_CONFIG_CLIENT_CERT_URL
-    })
-});
+// fbAdmin.initializeApp({
+//     credential: fbAdmin.credential.cert({
+//         "type": process.env.FIREBASE_CONFIG_TYPE,
+//         "project_id": process.env.FIREBASE_CONFIG_PROJECT_ID,
+//         "private_key_id": process.env.FIREBASE_CONFIG_PRIVATE_KEY_ID,
+//         "private_key": process.env.FIREBASE_CONFIG_PRIVATE_KEY,
+//         "client_email": process.env.FIREBASE_CONFIG_CLIENT_EMAIL,
+//         "client_id": process.env.FIREBASE_CONFIG_CLIENT_ID,
+//         "auth_uri": process.env.FIREBASE_CONFIG_AUTH_URI,
+//         "token_uri": process.env.FIREBASE_CONFIG_TOKEN_URI,
+//         "auth_provider_x509_cert_url": process.env.FIREBASE_CONFIG_AUTH_PROVIDER_CERT_URL,
+//         "client_x509_cert_url": process.env.FIREBASE_CONFIG_CLIENT_CERT_URL
+//     })
+// });
 
 module.exports = {
     sendNotification,
@@ -48,7 +48,8 @@ module.exports = {
 /** Send a push notification message using firebase */
 async function sendCloudMessage(message) {
     try {
-        const response = await fbAdmin.messaging().send(message)
+        // await fbAdmin.messaging().send(message)
+        const response = null;
         logger.debug("FirebaseService::sendCloudMessage:: Message sent", response)
         // console.debug("FirebaseService::sendCloudMessage:: Message sent", response);
     } catch (error) {

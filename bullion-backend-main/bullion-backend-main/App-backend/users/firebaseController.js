@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authorize = require('./../_middleware/authorize');
-const fireBaseService = require('./../users/fireBaseService');
+// const fireBaseService = require('./../users/fireBaseService');
 
 module.exports = router;
 
@@ -10,7 +10,7 @@ router.post("/register-device", authorize(), async(request, response) => {
         response.status(202).send({}); // early return considering client needs no data below
         const { user, body } = request;
         const { deviceId } = body;
-        await fireBaseService.getUserAndDevice(user, deviceId);
+        // await fireBaseService.getUserAndDevice(user, deviceId);
     } catch(error) {
         if (error.hasOwnProperty("status") && error.hasOwnProperty("message")) {
             const { status, ...e } = error;
