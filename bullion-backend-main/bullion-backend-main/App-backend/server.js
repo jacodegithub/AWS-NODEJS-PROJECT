@@ -67,7 +67,7 @@ app.use("/api/v1/", serviceability_routes);
 app.use('/users', require('./users/users.controller'));
 app.use('/bussinessusers', require('./users/bussinessuser.controller'));
 app.use('/api/v1/notifications', web_notification_routes);
-app.use('/api/v1/notifications', pushNotificationRoutes);
+// app.use('/api/v1/notifications', pushNotificationRoutes);
 app.use('/api/v1/referrals/', ReferralsController);
 app.use('/api/v1/notices', noticesController)
 
